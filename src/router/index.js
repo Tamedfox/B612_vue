@@ -7,6 +7,10 @@ import question from '@/view/question'
 import questionDetail from '@/view/questionDetail'
 import myQuestion from '@/view/myQuestion'
 import editQuestion from "@/view/editQuestion"
+import accountManage from "@/view/accountManage"
+import adminManage from '@/view/adminManage'
+import messageBoard from '@/view/messageBoard'
+import announcement from '@/view/announcement'
 
 
 Vue.use(Router)
@@ -39,7 +43,23 @@ export default new Router({
     {
       path:'/editQuestion/:questionId',
       component:editQuestion
-    }
+    },
+    {
+      path:'/accountManage',
+      component:accountManage
+    },
+    {
+      path:'/admin',
+      component:adminManage
+    },
+    {
+      path:'/message',
+      component:messageBoard
+    },
+    {
+      path:'/announcement',
+      component:announcement
+    },
 
   ]
 })

@@ -66,7 +66,12 @@ export default {
         "tag":tag
       })
     })
-
+  },
+  search(keyword,page,size) { //搜索
+    return request({
+      url:'/question/search/'+keyword + '/' + page + '/' + size,
+      method:'get'
+    })
   }
 
 }

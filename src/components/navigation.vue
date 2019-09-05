@@ -16,10 +16,10 @@
 
 
           <div style="width: 20%;float: left;margin: 10px 2% 0px -5%" class="hidden-xs-only search-btn">
-            <el-input placeholder="搜索博客"suffix-icon="el-icon-search"/>
+            <el-input v-model="keyword" placeholder="搜索问题"suffix-icon="el-icon-search"/>
           </div>
           <el-menu-item class="hidden-xs-only" index="">
-            <el-button type="text">搜索</el-button>
+            <el-button type="text" @click="search" >搜索</el-button>
           </el-menu-item>
 
           <el-menu-item class="hidden-xs-only" index="" v-if="this.$store.state.token==''">
@@ -84,13 +84,12 @@
               <i class="el-icon-s-home"></i>
               我的博客
             </el-menu-item>
-            <el-menu-item index="4-2">&nbsp;&nbsp;&nbsp;
+            <el-menu-item index="4-2"  route="/accountManage">&nbsp;&nbsp;&nbsp;
               <i class="el-icon-s-tools"></i>
               账号设置
             </el-menu-item>
 
-
-            <el-menu-item index="4-4">
+            <el-menu-item index="4-4" route="/admin">
               &nbsp;&nbsp;&nbsp;
               <i class="el-icon-loading"></i>管理后台
             </el-menu-item>
@@ -110,6 +109,7 @@
 
 <script>
   import user from '@/network/user'
+  import question from '@/network/question'
 
   export default {
     data() {
@@ -137,6 +137,9 @@
         loginFormVisible:false,
         loginShowPwd:true,
         registerFormVisible:false,
+        keyword:'',
+        currentPage:1,
+        pageSize:10,
         loginForm:{
           username:'',
           password:''
@@ -218,6 +221,11 @@
       },
       resetForm(formName) {
         this.$refs[formName].resetFields();
+      },
+      search(){
+        question.search(this.keyword,this.currentPage,this.pageSize).then(response => {
+          alert("ok");
+        })
       }
     }
   }
