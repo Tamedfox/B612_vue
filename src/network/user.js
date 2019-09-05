@@ -9,11 +9,11 @@ export default {
       data:qs.stringify({"username":username,"password":password})
     })
   },
-  register(username,password){
+  register(username,nickname,pass){
     return request({
       url:'/user/register',
       method: 'post',
-      data:qs.stringify({"username":username,"password":password})
+      data:qs.stringify({"username":username,"password":pass,'nickname':nickname})
     })
   },
   logout(){

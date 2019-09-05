@@ -36,7 +36,7 @@
             <div class="block"><el-avatar shape="square" :size="50" :src="comment.userDTO.avatarUrl"></el-avatar></div>
           </el-col>
           <el-col :span="21">
-            <div class="left"><span :text="comment.userDTO.nickname">回复人</span></div>
+            <div class="left"><span v-text="comment.userDTO.nickname">回复人</span></div>
             <div style="clear: both"></div>
             <div class="left"><span v-text="comment.content">回复内容</span></div>
           </el-col>
@@ -55,6 +55,17 @@
           <h4 class="left">请输入评论内容</h4>
         </div>
         <div style="clear: both"></div>
+        <div class="grid-content bg-purple-light">
+          <el-row class="left">
+            <el-col :span="3">
+              <div class="block"><el-avatar shape="square" :size="50" :src="user.avatarUrl"></el-avatar></div>
+            </el-col>
+            <el-col :span="21">
+              <div style="clear: both;height: 15px"></div>
+              <div style="margin-left: 20px"><span>{{user.nickname}}</span>  </div>
+            </el-col>
+          </el-row>
+        </div>
         <el-row>
           <div>
             <el-input
@@ -199,11 +210,6 @@
   .comment{
     margin: 10px 30px;
     width: 94%;
-  }
-
-  .description{
-    float: left;
-    margin: 10px 30px;
   }
 
   .left {

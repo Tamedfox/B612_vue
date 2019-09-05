@@ -27,7 +27,7 @@
           </el-menu-item>
 
           <!--登录dialog-->
-          <el-dialog title="登录" :visible.sync="loginFormVisible" width="30%" center>
+          <el-dialog title="登录" :visible.sync="loginFormVisible" width="35%" center>
             <el-form>
               <el-form-item >
                 <el-input placeholder="用户名" v-model="loginForm.username" prefixIcon="el-icon-user-solid"/>
@@ -44,8 +44,30 @@
           </el-dialog>
 
           <el-menu-item class="hidden-xs-only" index="" v-if="this.$store.state.token==''">
-            <el-button type="text">注册</el-button>
+            <el-button type="text" @click="registerFormVisible = true">注册</el-button>
           </el-menu-item>
+
+          <!--注册dialog-->
+          <el-dialog title="注册" :visible.sync="registerFormVisible" width="30%" center >
+            <el-form :model="registerForm" status-icon :rules="rules" ref="registerForm" label-width="100px" class="demo-ruleForm">
+              <el-form-item label="账号" prop="username">
+                <el-input v-model="registerForm.username" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="昵称" prop="nickname">
+                <el-input v-model="registerForm.nickname" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="密码" prop="pass">
+                <el-input type="password" v-model="registerForm.pass" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item label="确认密码" prop="checkPass">
+                <el-input type="password" v-model="registerForm.checkPass" autocomplete="off"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="submitForm('registerForm')">提交</el-button>
+                <el-button @click="resetForm('registerForm')">重置</el-button>
+              </el-form-item>
+            </el-form>
+          </el-dialog>
 
           <el-menu-item class="hidden-xs-only" index="" route="/question"  v-if="this.$store.state.token!==''">
             发布
@@ -91,13 +113,53 @@
 
   export default {
     data() {
+      let validatePass = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请输入密码'));
+        } else {
+          if (this.registerForm.checkPass !== '') {
+            this.$refs.registerForm.validateField('checkPass');
+          }
+          callback();
+        }
+      };
+      let validatePass2 = (rule, value, callback) => {
+        if (value === '') {
+          callback(new Error('请再次输入密码'));
+        } else if (value !== this.registerForm.pass) {
+          callback(new Error('两次输入密码不一致!'));
+        } else {
+          callback();
+        }
+      };
       return {
         activeIndex: '1',
         loginFormVisible:false,
         loginShowPwd:true,
+        registerFormVisible:false,
         loginForm:{
           username:'',
           password:''
+        },
+        registerForm: {
+          username:'',
+          nickname:'',
+          pass: '',
+          checkPass: ''
+        },
+        rules: {
+          username:[
+            {required: true, message: '请输入账号名称', trigger: 'blur'}
+          ],
+          nickname:[
+            {required: true, message: '请输入昵称', trigger: 'blur'}
+          ],
+          pass: [
+            {required: true, validator: validatePass, trigger: 'blur' },{ min: 6, max: 12, message: '长度在 6 到 12 个字符', trigger: 'blur' }
+          ],
+          checkPass: [
+            {required: true, validator: validatePass2, trigger: 'blur' }
+          ]
         }
       };
     },
@@ -137,10 +199,26 @@
             path:'/'  //跳转至首页
           })
         })
+      },
+      submitForm(formName) {
+        this.$refs[formName].validate((valid) => {
+          if (valid) {
+            user.register(this.registerForm.username,this.registerForm.nickname,this.registerForm.pass).then(response => {
+              this.$message({
+                message:'注册成功',
+                type:'success'
+              })
+              this.registerFormVisible = false;
+            })
+          } else {
+            console.log('error submit!!');
+            return false;
+          }
+        });
+      },
+      resetForm(formName) {
+        this.$refs[formName].resetFields();
       }
-      // register(){ //注册
-      //   user.register()
-      // }
     }
   }
 </script>

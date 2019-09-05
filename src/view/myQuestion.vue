@@ -40,11 +40,6 @@
           width="70">
         </el-table-column>
         <el-table-column
-          prop="tag"
-          label="标签"
-          width="150">
-        </el-table-column>
-        <el-table-column
           label="操作"
           width="100">
           <template slot-scope="scope">
