@@ -16,11 +16,11 @@ export default {
     })
   },
   sendQuestion(title,description,tagsStr){ //发布问题
-    console.log(qs.stringify({
-      'title':title,
-      'description':description,
-      'tag':tagsStr
-    }))
+    // console.log(qs.stringify({
+    //   'title':title,
+    //   'description':description,
+    //   'tag':tagsStr
+    // }))
     //解析为以下内容title=123&description=123&tag%5B0%5D=3&tag%5B1%5D=5&tag%5B2%5D=6，tag格式需变更
     return request({
       url:'/question',
@@ -56,15 +56,21 @@ export default {
       method:'delete'
     })
   },
-  updateQuestionById(id,title,description,tag){//更新问题
+  updateQuestionById(id,title,description,tagsStr){//更新问题
+    // console.log({
+    //   'title':title,
+    //   'description':description,
+    //   'tag':tagsStr
+    // });
     return request({
       url:'/question/' + id,
       method:'put',
-      data: qs.stringify({
+      headers: { 'Content-Type': 'application/json' },
+      data: {
         'title':title,
         'description':description,
-        "tag":tag
-      })
+        "tag":tagsStr
+      }
     })
   },
   search(keyword,page,size) { //搜索

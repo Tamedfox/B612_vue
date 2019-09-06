@@ -223,8 +223,8 @@
         this.$refs[formName].resetFields();
       },
       search(){
-        question.search(this.keyword,this.currentPage,this.pageSize).then(response => {
-          alert("ok");
+        this.$router.push({
+          path:'/search/'+this.keyword
         })
       }
     }

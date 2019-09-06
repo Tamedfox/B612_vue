@@ -10,7 +10,7 @@
 
             <div style="margin: 20px;"></div>
             <!--form表单-->
-            <el-form :label-position="labelPosition" :hide-required-asterisk="true">
+            <el-form :hide-required-asterisk="true">
               <el-form-item label="请简洁的输入问题标题" class="form-control">
                 <el-input placeholder="请输入问题标题" v-model="title"></el-input>
               </el-form-item>
@@ -76,9 +76,20 @@
           })
         },
         updateQuestion(){
-          question.updateQuestionById(this.questionId,this.title,this.description,this.tag).then(response => {
-            this.$message(response.message);
+          let tags = this.checkboxGroup;
+          let tagsStr = '';
+          for( let i = 0 ; i < tags.length ; i++){
+            if( i != tags.length - 1){
+              tagsStr = tagsStr + tags[i] + ',';
+            }else{
+              tagsStr = tagsStr + tags[i];
+            }
+          }
+          question.updateQuestionById(this.questionId,this.title,this.description,tagsStr).then(response => {
+            this.$message(response.message)
             history.back();
+          }).catch(err => {
+            console.log(err) // 这里catch到错误timeout
           })
         },
         loadTags(){

@@ -11,6 +11,7 @@ import accountManage from "@/view/accountManage"
 import adminManage from '@/view/adminManage'
 import messageBoard from '@/view/messageBoard'
 import announcement from '@/view/announcement'
+import search from '@/view/searchPage'
 
 
 Vue.use(Router)
@@ -59,6 +60,10 @@ export default new Router({
     {
       path:'/announcement',
       component:announcement
+    },
+    {
+      path:'/search/:keyword',
+      component:search
     },
 
   ]
