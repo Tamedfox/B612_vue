@@ -78,6 +78,12 @@ export default {
       url:'/question/search/'+keyword + '/' + page + '/' + size,
       method:'get'
     })
+  },
+  hotQuestions(){//获得热门问题
+    return request({
+      url:'/hot/hotQuestions',
+      method:'get'
+    })
   }
 
 }

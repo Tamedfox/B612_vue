@@ -8,6 +8,12 @@ export default {
       url:'/tag',
       method:'get'
     })
+  },
+  getHotTags(){
+    return request({
+      url:'/hot/hotTags',
+      method:'get'
+    })
   }
 
 }

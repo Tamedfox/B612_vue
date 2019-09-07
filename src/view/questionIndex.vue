@@ -13,7 +13,7 @@
           <div class="block"><el-avatar shape="square" :size="50" :src="question.userDTO.avatarUrl"></el-avatar></div>
         </el-col>
         <el-col :span="21">
-          <div class="title"><router-link :to="'/question/' + question.id">{{question.title}}</router-link></div>
+          <div ><router-link :to="'/question/' + question.id" class="title">{{question.title}}</router-link></div>
           <div style="clear: both"></div>
           <div class="content"><span>作者：{{question.userDTO.nickname}}</span>  •  <span>{{question.commentCount}}</span> 个回复 • <span>{{question.viewCount}}</span> 次浏览 • <span>{{question.gmtCreate | timeage}}</span></div>
         </el-col>
@@ -33,7 +33,8 @@
     </el-col>
     <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" class="right-part">
       <div class="grid-content bg-purple-light">
-        <h2>热门话题</h2>
+        <hotQuestion></hotQuestion>
+        <hotTag></hotTag>
      </div>
     </el-col>
   </el-row>
@@ -45,6 +46,8 @@
 <script>
   import timeage from '@/util/timeago'
   import question from '@/network/question'
+  import hotQuestion from '@/components/hotQuestion'
+  import hotTag from "@/components/hotTag"
 
 export default {
 
@@ -82,6 +85,7 @@ export default {
   },
   components:{
     //注册组件
+    hotQuestion,hotTag
   },
   filters:{
     timeage(time){
@@ -113,12 +117,18 @@ export default {
     margin: 3px 0;
   }
 
-  .question-list .title{
+  .question-list .title:hover{
     cursor: pointer;
-    color: #155faa;
+    color:#428bca;
+  }
+
+
+  .question-list .title{
+    color: black;;
     float: left;
     font-size: 16px;
     margin: 3px 0;
+    text-decoration: none;
   }
 
   .question-list .question{
