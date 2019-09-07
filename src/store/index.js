@@ -8,7 +8,8 @@ export default new Vuex.Store({
     roles:localStorage.getItem("roles") == null? '':localStorage.getItem("roles"),
     token:localStorage.getItem("token") == null? "":localStorage.getItem("token"),
     username:localStorage.getItem("username") == null? "":localStorage.getItem("username"),
-    avatarUrl:localStorage.getItem("avatarUrl") == null ? "":localStorage.getItem("avatarUrl")
+    avatarUrl:localStorage.getItem("avatarUrl") == null ? "":localStorage.getItem("avatarUrl"),
+    nickname:localStorage.getItem("nickname") == null ? "":localStorage.getItem("nickname")
   },
   mutations: {
     //登录
@@ -26,6 +27,9 @@ export default new Vuex.Store({
       //储存头像地址
       this.state.avatarUrl = data.avatarUrl;
       localStorage.setItem("avatarUrl",data.avatarUrl)
+      //储存昵称
+      this.state.nickname = data.nickname;
+      localStorage.setItem("nickname",data.nickname)
     },
     //登出
     logout(state){
@@ -37,6 +41,8 @@ export default new Vuex.Store({
       this.state.role = "";
       localStorage.removeItem("avatarUrl");
       this.state.avatarUrl = "";
+      localStorage.removeItem("nickname");
+      this.state.nickname = "";
     }
   }
 })

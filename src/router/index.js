@@ -7,11 +7,11 @@ import question from '@/view/question'
 import questionDetail from '@/view/questionDetail'
 import myQuestion from '@/view/myQuestion'
 import editQuestion from "@/view/editQuestion"
-import accountManage from "@/view/accountManage"
 import adminManage from '@/view/adminManage'
 import messageBoard from '@/view/messageBoard'
 import announcement from '@/view/announcement'
 import search from '@/view/searchPage'
+import userInfo from "@/view/userInfo";
 
 
 Vue.use(Router)
@@ -46,10 +46,6 @@ export default new Router({
       component:editQuestion
     },
     {
-      path:'/accountManage',
-      component:accountManage
-    },
-    {
       path:'/admin',
       component:adminManage
     },
@@ -65,6 +61,9 @@ export default new Router({
       path:'/search/:keyword',
       component:search
     },
-
+    {
+      path:'/userInfo',
+      component:userInfo
+    }
   ]
 })

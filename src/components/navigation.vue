@@ -74,17 +74,17 @@
           </el-menu-item>
 
           <el-submenu class="hidden-xs-only" index="4" v-if="this.$store.state.token!==''">
-            <template slot="title">&nbsp;&nbsp;{{this.$store.state.username}}&nbsp;&nbsp;</template>
+            <template slot="title">&nbsp;&nbsp;{{this.$store.state.nickname}}&nbsp;&nbsp;</template>
 
             <el-menu-item index="4-1" route="/question">&nbsp;&nbsp;&nbsp;
               <i class="el-icon-edit" ></i>
-              写博客
+              发布问题
             </el-menu-item>
             <el-menu-item index="4-3" route="/myQuestion">&nbsp;&nbsp;&nbsp;
               <i class="el-icon-s-home"></i>
-              我的博客
+              我的问题
             </el-menu-item>
-            <el-menu-item index="4-2"  route="/accountManage">&nbsp;&nbsp;&nbsp;
+            <el-menu-item index="4-2"  route="/userInfo">&nbsp;&nbsp;&nbsp;
               <i class="el-icon-s-tools"></i>
               账号设置
             </el-menu-item>

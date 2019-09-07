@@ -86,7 +86,11 @@
         }
 
         question.sendQuestion(this.title,this.description,tagsStr).then(response => {
-          this.$message(response.data)
+          this.$message({
+            message:response.message,
+            type:'success'
+          });
+          this.$router.push("/");
         }).catch(err => {
           console.log(err) // 这里catch到错误timeout
         })

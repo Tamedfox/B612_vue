@@ -33,8 +33,13 @@
     </el-col>
     <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8" class="right-part">
       <div class="grid-content bg-purple-light">
+        <!--热门问题-->
         <hotQuestion></hotQuestion>
+        <!--热门标签-->
         <hotTag></hotTag>
+        <div style="clear: both"></div>
+        <!--最新用户-->
+        <newUser></newUser>
      </div>
     </el-col>
   </el-row>
@@ -48,6 +53,7 @@
   import question from '@/network/question'
   import hotQuestion from '@/components/hotQuestion'
   import hotTag from "@/components/hotTag"
+  import newUser from '@/components/newUser'
 
 export default {
 
@@ -85,7 +91,7 @@ export default {
   },
   components:{
     //注册组件
-    hotQuestion,hotTag
+    hotQuestion,hotTag,newUser
   },
   filters:{
     timeage(time){

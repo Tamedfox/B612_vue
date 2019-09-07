@@ -37,7 +37,7 @@
     margin-left: 30px;
   }
   .hotQ_title{
-    font-size: 20px;
+    font-size: 17px;
     color:#155faa;
     text-decoration: none;
   }
