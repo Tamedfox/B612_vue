@@ -11,7 +11,8 @@ import adminManage from '@/view/adminManage'
 import messageBoard from '@/view/messageBoard'
 import announcement from '@/view/announcement'
 import search from '@/view/searchPage'
-import userInfo from "@/view/userInfo";
+import userInfo from "@/view/userInfo"
+import notification from '@/view/notification'
 
 
 Vue.use(Router)
@@ -64,6 +65,10 @@ export default new Router({
     {
       path:'/userInfo',
       component:userInfo
+    },
+    {
+      path:'/notification',
+      component:notification
     }
   ]
 })

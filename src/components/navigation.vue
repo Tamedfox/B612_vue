@@ -69,6 +69,11 @@
             </el-form>
           </el-dialog>
 
+          <el-menu-item class="hidden-xs-only" index="" route="/notification"  v-if="this.$store.state.token!==''">
+            通知<el-badge :value=this.$store.state.notificationNum class="item" type="primary" v-if="this.$store.state.notificationNum != 0">
+            </el-badge>
+          </el-menu-item>
+
           <el-menu-item class="hidden-xs-only" index="" route="/question"  v-if="this.$store.state.token!==''">
             发布
           </el-menu-item>
@@ -79,6 +84,11 @@
             <el-menu-item index="4-1" route="/question">&nbsp;&nbsp;&nbsp;
               <i class="el-icon-edit" ></i>
               发布问题
+            </el-menu-item>
+            <el-menu-item index="4-3" route="/notification">&nbsp;&nbsp;&nbsp;
+              <i class="el-icon-chat-dot-round"></i>
+              我的通知<el-badge :value=this.$store.state.notificationNum class="item" type="primary" v-if="this.$store.state.notificationNum != 0">
+              </el-badge>
             </el-menu-item>
             <el-menu-item index="4-3" route="/myQuestion">&nbsp;&nbsp;&nbsp;
               <i class="el-icon-s-home"></i>
@@ -97,6 +107,7 @@
             <el-menu-item @click="logout">&nbsp;&nbsp;&nbsp;
               <i class="el-icon-switch-button" />退出登录
             </el-menu-item>
+            <p style="display: none">{{token = this.$store.state.token}}</p>
           </el-submenu>
 
         </el-menu>
@@ -109,7 +120,7 @@
 
 <script>
   import user from '@/network/user'
-  import question from '@/network/question'
+  import notification from '@/network/notification'
 
   export default {
     data() {
@@ -140,6 +151,8 @@
         keyword:'',
         currentPage:1,
         pageSize:10,
+        unreadNum:'',//通知未读数，登录后可查看
+        token:'',
         loginForm:{
           username:'',
           password:''
@@ -166,6 +179,12 @@
         }
       };
     },
+    watch:{
+      token(){
+        this.getNotifis();
+      }
+    }
+    ,
     methods: {
       handleSelect(key, keyPath) {
         // console.log(key, keyPath);
@@ -189,6 +208,7 @@
             type: 'success'
           })
           this.loginFormVisible = false
+          this.getNotifis();
         })
       },
       logout(){ //退出
@@ -226,6 +246,12 @@
         this.$router.push({
           path:'/search/'+this.keyword
         })
+      },
+      getNotifis(){
+        notification.getNotifications(1,10).then(response => {
+          this.$store.state.notificationNum = response.data.total;
+
+        })
       }
     }
   }
@@ -245,6 +271,8 @@
     margin: 5px auto;
     width: 20%;
   }
-
+  .item {
+    margin: 0px 5px;
+  }
 
 </style>

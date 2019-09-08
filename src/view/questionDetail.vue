@@ -58,11 +58,11 @@
         <div class="grid-content bg-purple-light">
           <el-row class="left">
             <el-col :span="3">
-              <div class="block"><el-avatar shape="square" :size="50" :src="user.avatarUrl"></el-avatar></div>
+              <div class="block"><el-avatar shape="square" :size="50" :src="this.$store.state.avatarUrl"></el-avatar></div>
             </el-col>
             <el-col :span="21">
               <div style="clear: both;height: 15px"></div>
-              <div style="margin-left: 20px"><span>{{user.nickname}}</span>  </div>
+              <div style="margin-left: 20px"><span>{{this.$store.state.nickname}}</span>  </div>
             </el-col>
           </el-row>
         </div>

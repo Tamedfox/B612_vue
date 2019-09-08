@@ -9,7 +9,8 @@ export default new Vuex.Store({
     token:localStorage.getItem("token") == null? "":localStorage.getItem("token"),
     username:localStorage.getItem("username") == null? "":localStorage.getItem("username"),
     avatarUrl:localStorage.getItem("avatarUrl") == null ? "":localStorage.getItem("avatarUrl"),
-    nickname:localStorage.getItem("nickname") == null ? "":localStorage.getItem("nickname")
+    nickname:localStorage.getItem("nickname") == null ? "":localStorage.getItem("nickname"),
+    notificationNum:''
   },
   mutations: {
     //登录
