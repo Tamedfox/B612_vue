@@ -1,10 +1,11 @@
 <template>
-  <div style="background-color: white;">
+  <div style="background-color: white;height: 600px;margin:30px 50px;">
     <el-row>
-      <el-col>
+      <el-col v-for="announce in announceList" :key="announce.id">
         <h1>公告</h1>
-        <div style="width: 600px;margin: 10px auto">
-        <span >公告内容-1234设置layout，表示需要显示的内容，用逗号分隔，布局元素会依次显示。prev表示上一页，next为下一页，pager表示页码列表，除此以外还提供了jumper和total，size和特殊的布局符号->，->后的元素会靠右显示，jumper表示跳页元素，total表示总条目数，size用于设置每页显示的页码数量。</span>
+        <div class="announce-div">
+          <h3>{{announce.title}}</h3>
+        <span >{{announce.content}}</span>
         </div>
       </el-col>
     </el-row>
@@ -12,10 +13,39 @@
 </template>
 
 <script>
+    import announcement from '@/network/announcement'
+
     export default {
+      data(){
+        return{
+          announceList:[]
+        }
+      },
+      created(){
+       this. getAnnoucements();
+      },
+      methods:{
+        getAnnoucements(){
+          announcement.getAnnounce().then(response => {
+            this.announceList = response.data;
+          })
+
+        }
+      }
     }
+
 </script>
 
 <style scoped>
+
+  .announce-div{
+    width: 600px;
+    height: 300px;
+    margin: auto;
+    border: #0505c8;
+    border-style: dashed;
+    border-width: 1px;
+    padding-bottom:20px;
+  }
 
 </style>

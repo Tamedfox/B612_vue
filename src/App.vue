@@ -1,18 +1,20 @@
 <template>
   <div id="app">
-    <navigation></navigation>
-    <router-view/>
+      <navigation></navigation>
+      <router-view/>
+      <foot></foot>
   </div>
 </template>
 
 <script>
   import navigation from '@/components/navigation';
+  import foot from '@/components/foot';
 
   export default {
     name: 'App',
     components:
       {
-        navigation
+        navigation,foot
       }
   }
 </script>

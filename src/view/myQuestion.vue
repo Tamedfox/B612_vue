@@ -1,5 +1,5 @@
 <template>
-    <div class="quesetion-table">
+    <div class="quesetion-table" style="height: 600px">
       <el-table
         :data="list"
         border

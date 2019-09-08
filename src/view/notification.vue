@@ -1,5 +1,5 @@
 <template>
-    <div style="background-color: white;margin: 30px 50px;padding-top: 20px;">
+    <div style="background-color: white;margin: 30px 50px;padding-top: 20px;height: 600px">
       <div>
         <el-row v-for="notification in notifications" :key="notification.id" style="margin-bottom: 15px">
           <el-col >

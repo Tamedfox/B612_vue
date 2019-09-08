@@ -13,6 +13,7 @@ import announcement from '@/view/announcement'
 import search from '@/view/searchPage'
 import userInfo from "@/view/userInfo"
 import notification from '@/view/notification'
+import error from '@/components/404'
 
 
 Vue.use(Router)
@@ -69,6 +70,10 @@ export default new Router({
     {
       path:'/notification',
       component:notification
+    },
+    {
+      path:'/*',
+      component:error
     }
   ]
 })

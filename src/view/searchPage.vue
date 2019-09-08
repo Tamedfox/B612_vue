@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: white">
+  <div style="background-color: white;height: 600px">
     <p style="display: none">{{keyword = this.$route.params.keyword}}</p>
     <el-row v-for="search in searchList" :key="search.id">
       <h2 ><router-link :to="'/question/' + search.id" class="search_title">{{search.title}}</router-link></h2>

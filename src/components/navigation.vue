@@ -7,7 +7,7 @@
 
 
           <el-menu-item index="1" route="/">B612社区</el-menu-item>
-          <el-menu-item index="2" style="margin-left: 2%" route="/message">留言板</el-menu-item>
+          <el-menu-item index="2" style="margin-left: 2%" route="/message" v-if="message == true">留言板</el-menu-item>
           <el-menu-item index="3" style="margin-left: 2%" route="/announcement">本站公告</el-menu-item>
 
 
@@ -99,7 +99,7 @@
               账号设置
             </el-menu-item>
 
-            <el-menu-item index="4-4" route="/admin">
+            <el-menu-item index="4-4" route="/admin" v-if="message == true">
               &nbsp;&nbsp;&nbsp;
               <i class="el-icon-loading"></i>管理后台
             </el-menu-item>
@@ -151,6 +151,7 @@
         keyword:'',
         currentPage:1,
         pageSize:10,
+        message:false,
         unreadNum:'',//通知未读数，登录后可查看
         token:'',
         loginForm:{
@@ -265,7 +266,7 @@
     font-size: 15px;
   }
   .space {
-    width:30%;
+    width:40%;
   }
   .search-btn{
     margin: 5px auto;

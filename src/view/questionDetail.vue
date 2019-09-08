@@ -21,7 +21,7 @@
         <el-tag v-for="tag in tags" :key="tag.id" class="des-tag">{{tag.name}}</el-tag>
         <div style="clear: both"></div>
         <el-divider></el-divider>
-        <div class="content left"><i class="el-icon-thumb question-tag"><el-button type="text" class="little-function" @click="addLike">点赞 {{likeCount}}</el-button></i> <span class="el-icon-s-comment question-tag">添加评论</span>  </div>
+        <div class="content left"><i class="el-icon-thumb question-tag"><el-button type="text" class="little-function" @click="addLike">点赞 {{likeCount}}</el-button></i> <span class="el-icon-s-comment question-tag" style="display: none">添加评论</span>  </div>
         <!--提问详细内容结束-->
 
         <div style="clear: both"></div>
@@ -41,7 +41,7 @@
             <div class="left"><span v-text="comment.content">回复内容</span></div>
           </el-col>
           <div style="clear: both"></div>
-          <div class="content left"><i class="el-icon-thumb question-tag"><el-button type="text" class="little-function" @click="addCommentLike(comment)">点赞 {{comment.likeCount}}</el-button></i> <span class="el-icon-s-comment question-tag">添加评论</span>  </div>
+          <div class="content left"><i class="el-icon-thumb question-tag"><el-button type="text" class="little-function" @click="addCommentLike(comment)">点赞 {{comment.likeCount}}</el-button></i> <span class="el-icon-s-comment question-tag" style="display: none">添加评论</span>  </div>
           <div style="clear: both"></div>
           <el-divider></el-divider>
         </el-row>
