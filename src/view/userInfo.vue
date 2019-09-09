@@ -19,7 +19,7 @@
       <el-form-item label="生日">
         <el-date-picker
           v-model="birthday"
-          readonly="true"
+          :readonly="true"
           type="date"
           placeholder="选择日期"
         style="float: left">

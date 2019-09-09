@@ -36,6 +36,7 @@
                 <el-input placeholder="密码" v-model="loginForm.password"
                           prefixIcon="el-icon-lock" :show-password="loginShowPwd"/>
               </el-form-item>
+
               <el-button @click="login">登录&nbsp;&nbsp;<i class="el-icon-check"></i></el-button>
               <router-link to="/forgetPwd">
                 <el-button>忘记密码&nbsp;&nbsp;<i class="el-icon-right"></i></el-button>
@@ -58,11 +59,20 @@
               </el-form-item>
               <el-form-item label="密码" prop="pass">
                 <el-input type="password" v-model="registerForm.pass" autocomplete="off"></el-input>
+              </el-form-item >
+              <el-form-item label="手机号">
+                <el-input placeholder="手机号" v-model="registerForm.phone"
+                          prefixIcon="el-icon-lock"/>
+              </el-form-item>
+              <el-form-item label="验证码">
+                <el-input placeholder="验证码" v-model="registerForm.code"
+                          prefixIcon="el-icon-lock"/>
               </el-form-item>
               <el-form-item label="确认密码" prop="checkPass">
                 <el-input type="password" v-model="registerForm.checkPass" autocomplete="off"></el-input>
               </el-form-item>
               <el-form-item>
+                <el-button type="primary" @click="getCode">获取验证码</el-button>
                 <el-button type="primary" @click="submitForm('registerForm')">提交</el-button>
                 <el-button @click="resetForm('registerForm')">重置</el-button>
               </el-form-item>
@@ -156,13 +166,16 @@
         token:'',
         loginForm:{
           username:'',
-          password:''
+          password:'',
+
         },
         registerForm: {
           username:'',
           nickname:'',
           pass: '',
-          checkPass: ''
+          checkPass: '',
+          phone:'',
+          code:''
         },
         rules: {
           username:[
@@ -227,12 +240,15 @@
       submitForm(formName) {
         this.$refs[formName].validate((valid) => {
           if (valid) {
-            user.register(this.registerForm.username,this.registerForm.nickname,this.registerForm.pass).then(response => {
+            user.register(this.registerForm.username,this.registerForm.nickname,this.registerForm.pass,this.registerForm.phone,this.registerForm.code).then(response => {
               this.$message({
-                message:'注册成功',
+                message:response.message,
                 type:'success'
               })
               this.registerFormVisible = false;
+            }).catch(error =>{
+              console.log(error)
+
             })
           } else {
             console.log('error submit!!');
@@ -251,6 +267,12 @@
       getNotifis(){
         notification.getNotifications(1,10).then(response => {
           this.$store.state.notificationNum = response.data.total;
+
+        })
+      },
+      getCode(){
+        alert("获取验证码");
+        user.getPhoneCode(this.registerForm.phone).then(response => {
 
         })
       }

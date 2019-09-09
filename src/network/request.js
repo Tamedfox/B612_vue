@@ -29,11 +29,33 @@ service.interceptors.response.use(
     //拦截所有非code 200的相应，所以相应中不需要在判断code 200
     const  res = response.data
     if ((typeof (res.code) != "undefined" && res.code != 200)) {
+      if(res.code == 1008){
+        Message({
+          message:res.message,
+          type:'error'
+        })}
+      else if(res.code == 1009){
+        Message({
+          message:res.message,
+          type:'error'
+        })
+      }else if(res.code == 4000){
+        Message({
+          message:res.message,
+          type:'error'
+        })
+      }else{
+        Message({
+          message:res.message,
+          type:'error'
+        })
+      }
 
       return Promise.reject('error')
-    } else {
+    }   else {
       return response.data
     }
+
   },error => {
     console.log('错误：' + error.message)
     Message({
